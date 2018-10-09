@@ -452,7 +452,6 @@ class Imposter {
         // return fetchReturnValue;
 
         let mountebankServer = request(`http://${this.ImposterInformation.mountebankHost}:${this.ImposterInformation.mountebankPort}`);
-
         return mountebankServer
             .post('/imposters')
             .set('Content-Type', 'application/json')
@@ -465,6 +464,17 @@ class Imposter {
 
     getMountebankResponse() {
         return this._createMBPostRequestBody();
+    }
+
+
+    // --------- added methods
+
+    getRequests() {
+        let mountebankServer = request(`http://${this.ImposterInformation.mountebankHost}:${this.ImposterInformation.mountebankPort}`);
+        return mountebankServer
+            .get(`/imposters/${this.ImposterInformation.imposterPort}`)
+            .set('Accept', 'application/json');
+
     }
 }
 
