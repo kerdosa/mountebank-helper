@@ -469,12 +469,12 @@ class Imposter {
 
     // --------- added methods
 
-    getRequests() {
+    async getRequests() {
         let mountebankServer = request(`http://${this.ImposterInformation.mountebankHost}:${this.ImposterInformation.mountebankPort}`);
-        return mountebankServer
+        let response = await mountebankServer
             .get(`/imposters/${this.ImposterInformation.imposterPort}`)
             .set('Accept', 'application/json');
-
+        return response.body;
     }
 }
 
